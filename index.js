@@ -18,8 +18,10 @@ client.on("messageCreate", async (message) => {
           if(message.content.includes("Колко е часа")){
                
                let today = Date.now();
-               let time = today.getUTC
-               message.reply(time);
+               let hours = today.getUTCHours() + 2;
+               let minutes = today.getUTCMinutes();
+               let seconds = today.getUTCSeconds();
+               message.reply(`${hours}/${minutes}/${seconds}`);
           }
      }
 })
