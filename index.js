@@ -8,14 +8,17 @@ const client = new Client({
           GatewayIntentBits.Guilds,
           GatewayIntentBits.GuildMessages,
           GatewayIntentBits.GuildMembers,
+          GatewayIntentBits.MessageContent
      ]
 })
 
 client.on("messageCreate", async (message) => {
      if (!message?.author.bot) {
-          if(message.content == "Колко е часа!"){
+         console.log(message.content)
+          if(message.content.includes("Колко е часа")){
+               
                let today = Date.now();
-               let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+               let time = today.getUTC
                message.reply(time);
           }
      }
