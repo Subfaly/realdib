@@ -1,31 +1,31 @@
-// eslint-disable-next-line no-undef
 const  { Client, GatewayIntentBits } = require("discord.js");
-
-
+const readline = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+function Question(){
+readline.question(`Type in chat:`, (text) => {
+    const channel = client.channels.cache.get('1008764282223214623');
+    channel.send(text);
+    
+    Question();
+});
+}
+Question();
 
 const client = new Client({
      intents: [
           GatewayIntentBits.Guilds,
           GatewayIntentBits.GuildMessages,
           GatewayIntentBits.GuildMembers,
-          GatewayIntentBits.MessageContent
      ]
 })
+client.on("messageCreate", (msg) =>{
+    
 
-client.on("messageCreate", async (message) => {
-     if (!message?.author.bot) {
-         console.log(message.content)
-          if(message.content.includes("Колко е часа")){
-               
-               let today = Date.now();
-               let hours = today.getUTCHours() + 2;
-               let minutes = today.getUTCMinutes();
-               let seconds = today.getUTCSeconds();
-               message.reply(`${hours}/${minutes}/${seconds}`);
-          }
-     }
 })
 
+const mySecret = process.env['TOKEN']
 
 // eslint-disable-next-line no-undef
-client.login(process.env.TOKEN)
+client.login(mySecret)
